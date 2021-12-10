@@ -13,9 +13,7 @@
                 var input = parts.Take(10).ToArray();
 
                 var knownDigits = input.Select(x => IsKnownDigit(x)).Where(x => x != null).ToDictionary(x => x.Key, x => x.Value);
-                var d9 = parts
-                    .Take(10)
-                    .Where(x => x.Length == 6 &&  x.GetDifference(knownDigits[1]).GetDifference(knownDigits[4]).GetDifference(knownDigits[7]).Length == 1);
+                var d9 = input.Where(x => x.Length == 6 &&  x.GetDifference(knownDigits[1]).GetDifference(knownDigits[4]).GetDifference(knownDigits[7]).Length == 1);
                 knownDigits[9] = d9.First();
 
                 var d0 = input.Where(x => x.Length == 6 && x != knownDigits[9] && knownDigits[1].GetDifference(x).Length == 0);
